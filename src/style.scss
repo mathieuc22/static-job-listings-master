@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap");
 
 // Variables
 
@@ -19,7 +18,7 @@ $color-neutral-Black: hsl(0, 0%, 0%);
 // Typography
 $font-size-default: 15px;
 $font-weight-default: 500;
-$font-family-default: 'League Spartan', sans-serif;
+$font-family-default: "League Spartan", sans-serif;
 
 $mq-max-width: 1024px;
 
@@ -38,7 +37,7 @@ body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
   color: $color-neutral-Black;
-  background: $color-neutral-White;
+  background: $color-neutral-Light-Grayish-Cyan;
   font-family: $font-family-default;
   font-size: $font-size-default;
   font-weight: $font-weight-default;
