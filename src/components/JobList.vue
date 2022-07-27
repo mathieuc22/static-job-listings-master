@@ -3,7 +3,7 @@
         <span @click="removeCategory(category)" v-for="category in selectedCategories">{{ category }}</span>
     </div>
     <ul>
-        <li class="job" v-for="job in jobs" :key="job.id">
+        <li class="job" v-for="job in filteredJobs" :key="job.id">
             <img :src="job.logo" alt="">
             {{ job.company }}
             {{ job.position }}
@@ -21,17 +21,41 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import json from '../assets/data.json'
 
-const jobs = ref(json)
 const selectedCategories = ref([])
+const filteredJobs = ref([])
+
+onMounted(() => {
+    // init list of jobs
+    filteredJobs.value = json
+})
+
+// recursive filter function based on selected categories array
+function filter() {
+    // init filtered jobs with all jobs
+    filteredJobs.value = json
+    // filter based on selected categories
+    if (selectedCategories.value.length) {
+        selectedCategories.value.forEach(category => {
+            filteredJobs.value = filteredJobs.value.filter(job =>
+                job.languages.includes(category) ||
+                job.tools.includes(category) ||
+                job.role === category ||
+                job.level === category
+            );
+        });
+    }
+}
 
 function addCategory(category) {
     // prevent duplicates
     if (!selectedCategories.value.includes(category)) {
         selectedCategories.value.push(category)
     }
+    // refresh list of jobs
+    filter()
 }
 
 function removeCategory(category) {
@@ -40,6 +64,8 @@ function removeCategory(category) {
     if (index > -1) {
         selectedCategories.value.splice(index, 1);
     }
+    // refresh list of jobs
+    filter()
 }
 
 </script>
