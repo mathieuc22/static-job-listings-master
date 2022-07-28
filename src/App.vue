@@ -28,6 +28,6 @@ header {
 main {
   position: relative;
   margin: auto;
-  width: 77%;
+  width: 77.1%;
 }
 </style>

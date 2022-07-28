@@ -16,12 +16,14 @@
 
     <div class="result">
         <ul class="jobs">
-            <li class="job" v-for="job in filteredJobs" :key="job.id">
+            <li class="job" :class="{ featured: job.featured }" v-for="job in filteredJobs" :key="job.id">
                 <div class="job__desc">
                     <img :src="job.logo" alt="">
                     <div class="job__info">
                         <div class="job__company">
-                            {{ job.company }}
+                            <span>{{ job.company }}</span>
+                            <span v-if="job.new" class="badge">New!</span>
+                            <span v-if="job.featured" class="badge badge--dark">Featured</span>
                         </div>
                         <div class="job__position">
                             {{ job.position }}
@@ -132,6 +134,7 @@ function removeCategory(category) {
 .clear {
     cursor: pointer;
     font-weight: 700;
+    font-size: 1.1em;
     color: $color-primary-Desaturated-Dark-Cyan;
 
     &:hover {
@@ -185,12 +188,16 @@ function removeCategory(category) {
 
     &__categories {
         display: flex;
-        gap: 5px;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
 
     &__category {
         cursor: pointer;
-        padding: 8px;
+        font-size: 1.04em;
+        font-weight: 700;
+        padding: 9px;
         border-radius: 5px;
         background-color: $color-neutral-Light-Grayish-Cyan-filter;
         color: $color-primary-Desaturated-Dark-Cyan;
@@ -210,12 +217,17 @@ function removeCategory(category) {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        white-space: nowrap;
     }
 
     &__company {
         font-size: 1.2em;
         font-weight: 700;
         color: $color-primary-Desaturated-Dark-Cyan;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
     &__position {
@@ -236,6 +248,28 @@ function removeCategory(category) {
         gap: 15px;
     }
 }
+
+.badge {
+    user-select: none;
+    padding: 5px 9px;
+    color: $color-neutral-White;
+    background-color: $color-primary-Desaturated-Dark-Cyan;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 12px;
+
+    &--dark {
+        background-color: $color-neutral-Very-Dark-Grayish-Cyan;
+    }
+}
+
+.featured {
+    padding-left: 35px;
+    border-left: 5px solid $color-primary-Desaturated-Dark-Cyan;
+}
+
+//transitions
 
 .slide-fade-enter-active {
     transition: all 0.25s ease-out;
