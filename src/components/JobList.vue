@@ -1,17 +1,18 @@
 <template>
 
+    <Transition name="slide-fade">
+        <div v-if="selectedCategories.length" class="filter">
+            <ul class="categories">
+                <li class="category" v-for="category in selectedCategories">
+                    <span class="category__name">{{ category }}</span>
+                    <img class="category__remove" @click="removeCategory(category)"
+                        src="../../src/assets/images/icon-remove.svg" alt="Remove icon">
+                </li>
+            </ul>
 
-    <div v-if="selectedCategories.length" class="filter">
-        <ul class="categories">
-            <li class="category" v-for="category in selectedCategories">
-                <span class="category__name">{{ category }}</span>
-                <img class="category__remove" @click="removeCategory(category)"
-                    src="../../src/assets/images/icon-remove.svg" alt="Remove icon">
-            </li>
-        </ul>
-
-        <div class="clear">Clear</div>
-    </div>
+            <div class="clear">Clear</div>
+        </div>
+    </Transition>
 
     <div class="result">
         <ul class="jobs">
@@ -183,5 +184,19 @@ function removeCategory(category) {
             color: $color-neutral-White;
         }
     }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.25s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-300px);
+  opacity: 0;
 }
 </style>
