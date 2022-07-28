@@ -10,7 +10,7 @@
                 </li>
             </ul>
 
-            <div class="clear">Clear</div>
+            <div @click="clear" class="clear">Clear</div>
         </div>
     </Transition>
 
@@ -57,6 +57,11 @@ onMounted(() => {
     // init list of jobs
     filteredJobs.value = json
 })
+
+function clear() {
+    filteredJobs.value = json
+    selectedCategories.value = []
+}
 
 // recursive filter function based on selected categories array
 function filter() {
