@@ -18,7 +18,7 @@
         <ul class="jobs">
             <li class="job" :class="{ featured: job.featured }" v-for="job in filteredJobs" :key="job.id">
                 <div class="job__desc">
-                    <img :src="job.logo" alt="">
+                    <img class="job__logo" :src="job.logo" alt="">
                     <div class="job__info">
                         <div class="job__company">
                             <span>{{ job.company }}</span>
@@ -104,12 +104,7 @@ function removeCategory(category) {
 </script>
 
 <style lang="scss" scoped>
-.job {
-    background: $color-neutral-White;
-}
-
 .filter {
-    height: 72px;
     width: 100%;
     padding: 20px 40px;
     background-color: $color-neutral-White;
@@ -122,19 +117,25 @@ function removeCategory(category) {
     align-items: center;
     justify-content: space-between;
     filter: drop-shadow(0px 10px 10px rgba(91, 164, 164, 0.25));
+
+    @media screen and (max-width: $mq-max-width) {
+        position: relative;
+        margin-bottom: -50px;
+    }
 }
 
 .categories {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    font-size: 1.1em;
+    font-size: 16.5px;
 }
 
 .clear {
     cursor: pointer;
     font-weight: 700;
-    font-size: 1.1em;
+    font-size: 16.5px;
     color: $color-primary-Desaturated-Dark-Cyan;
 
     &:hover {
@@ -167,6 +168,10 @@ function removeCategory(category) {
 
 .result {
     padding-top: 78px;
+
+    @media screen and (max-width: $mq-max-width) {
+        padding-top: 56px;
+    }
 }
 
 .jobs {
@@ -174,9 +179,14 @@ function removeCategory(category) {
     display: flex;
     flex-direction: column;
     gap: 25px;
+
+    @media screen and (max-width: $mq-max-width) {
+        gap: 40px;
+    }
 }
 
 .job {
+    position: relative;
     width: 100%;
     padding: 32px 40px;
     background-color: $color-neutral-White;
@@ -186,16 +196,29 @@ function removeCategory(category) {
     justify-content: space-between;
     filter: drop-shadow(0px 10px 10px rgba(91, 164, 164, 0.25));
 
+    @media screen and (max-width: $mq-max-width) {
+        padding: 30px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
     &__categories {
         display: flex;
         gap: 16px;
         flex-wrap: wrap;
         justify-content: flex-end;
+
+        @media screen and (max-width: $mq-max-width) {
+            padding-top: 15px;
+            border-top: 2px solid lighten($color: $color-neutral-Dark-Grayish-Cyan, $amount: 35);
+            justify-content: flex-start;
+        }
     }
 
     &__category {
         cursor: pointer;
-        font-size: 1.04em;
+        font-size: 15.6px;
         font-weight: 700;
         padding: 9px;
         border-radius: 5px;
@@ -213,11 +236,26 @@ function removeCategory(category) {
         gap: 20px;
     }
 
+    &__logo {
+
+        @media screen and (max-width: $mq-max-width) {
+            height: 48px;
+            width: 48px;
+            position: absolute;
+            top: 0;
+            transform: translateY(-50%);
+        }
+    }
+
     &__info {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         white-space: nowrap;
+
+        @media screen and (max-width: $mq-max-width) {
+            gap: 15px;
+        }
     }
 
     &__company {
@@ -236,6 +274,10 @@ function removeCategory(category) {
         color: $color-neutral-Very-Dark-Grayish-Cyan;
         cursor: pointer;
 
+        @media screen and (max-width: $mq-max-width) {
+            font-size: 1.26em;
+        }
+
         &:hover {
             color: $color-primary-Desaturated-Dark-Cyan;
         }
@@ -246,6 +288,11 @@ function removeCategory(category) {
         color: $color-neutral-Dark-Grayish-Cyan;
         display: flex;
         gap: 15px;
+
+        @media screen and (max-width: $mq-max-width) {
+            font-size: 1.4em;
+        gap: 8px;
+        }
     }
 }
 
@@ -267,6 +314,10 @@ function removeCategory(category) {
 .featured {
     padding-left: 35px;
     border-left: 5px solid $color-primary-Desaturated-Dark-Cyan;
+
+    @media screen and (max-width: $mq-max-width) {
+        padding-left: 19px;
+    }
 }
 
 //transitions

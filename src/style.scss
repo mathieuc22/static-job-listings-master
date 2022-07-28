@@ -44,6 +44,10 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
+
+  @media screen and (max-width: $mq-max-width) {
+    font-size: 12px;
+  }
 }
 
 // components

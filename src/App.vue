@@ -29,5 +29,9 @@ main {
   position: relative;
   margin: auto;
   width: 77.1%;
+
+  @media screen and (max-width: $mq-max-width) {
+    width: 85%;
+  }
 }
 </style>
