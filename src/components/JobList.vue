@@ -19,11 +19,19 @@
             <li class="job" v-for="job in filteredJobs" :key="job.id">
                 <div class="job__desc">
                     <img :src="job.logo" alt="">
-                    {{ job.company }}
-                    {{ job.position }}
-                    {{ job.postedAt }}
-                    {{ job.contract }}
-                    {{ job.location }}
+                    <div class="job__info">
+                        <div class="job__company">
+                            {{ job.company }}
+                        </div>
+                        <div class="job__position">
+                            {{ job.position }}
+                        </div>
+                        <div class="job__details">
+                            <span>{{ job.postedAt }}</span> &#183;
+                            <span>{{ job.contract }}</span> &#183;
+                            <span>{{ job.location }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="job__categories">
                     <span class="job__category" @click="addCategory(job.role)">{{ job.role }}</span>
@@ -106,12 +114,14 @@ function removeCategory(category) {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    filter: drop-shadow(0px 10px 10px rgba(91, 164, 164, 0.25));
 }
 
 .categories {
     list-style: none;
     display: flex;
     gap: 10px;
+    font-size: 1.1em;
 }
 
 .clear {
@@ -138,7 +148,7 @@ function removeCategory(category) {
 
     &__remove {
         cursor: pointer;
-        padding: 8px;
+        padding: 9px;
         background-color: $color-primary-Desaturated-Dark-Cyan;
 
         &:hover {
@@ -148,24 +158,25 @@ function removeCategory(category) {
 }
 
 .result {
-    padding-top: 70px;
+    padding-top: 78px;
 }
 
 .jobs {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 .job {
     width: 100%;
-    padding: 20px 40px;
+    padding: 32px 40px;
     background-color: $color-neutral-White;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    filter: drop-shadow(0px 10px 10px rgba(91, 164, 164, 0.25));
 
     &__categories {
         display: flex;
@@ -184,19 +195,54 @@ function removeCategory(category) {
             color: $color-neutral-White;
         }
     }
+
+    &__desc {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__company {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: $color-primary-Desaturated-Dark-Cyan;
+    }
+
+    &__position {
+        font-size: 1.5em;
+        font-weight: 700;
+        color: $color-neutral-Very-Dark-Grayish-Cyan;
+        cursor: pointer;
+
+        &:hover {
+            color: $color-primary-Desaturated-Dark-Cyan;
+        }
+    }
+
+    &__details {
+        font-size: 1.2em;
+        color: $color-neutral-Dark-Grayish-Cyan;
+        display: flex;
+        gap: 15px;
+    }
 }
 
 .slide-fade-enter-active {
-  transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateY(-300px);
-  opacity: 0;
+    transform: translateY(-300px);
+    opacity: 0;
 }
 </style>
